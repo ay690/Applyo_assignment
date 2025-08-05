@@ -37,28 +37,32 @@ export default function MovieDetailsModal({
     useAppSelector(selectMoviesState);
 
   useEffect(() => {
-    if (isOpen && imdbID) {
-      dispatch(fetchMovieDetails(imdbID));
-    }
+    if (isOpen && imdbID) dispatch(fetchMovieDetails(imdbID));
     return () => {
-      if (isOpen) {
-        dispatch(clearMovieDetails());
-      }
+      if (isOpen) dispatch(clearMovieDetails());
     };
   }, [isOpen, imdbID, dispatch]);
 
   const handleOpenChange = (open: boolean) => {
-    if (!open) {
-      onClose();
-    }
+    if (!open) onClose();
   };
 
   const posterUrl =
-    movieDetails?.Poster !== "N/A" ? movieDetails?.Poster : "https://placehold.co/400x600";
+    movieDetails?.Poster !== "N/A"
+      ? movieDetails?.Poster
+      : "https://placehold.co/400x600";
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-5xl w-full sm:w-[90%] max-h-[90vh] overflow-y-auto p-4">
+      <DialogContent
+        className="
+          w-[95vw] sm:w-[90vw] md:w-full
+          max-w-[95vw] sm:max-w-4xl md:max-w-5xl
+          max-h-[85vh]
+          overflow-y-auto
+          p-4
+        "
+      >
         {detailsStatus === "loading" && <MovieDetailsSkeleton />}
 
         {detailsStatus === "failed" && (
@@ -72,25 +76,26 @@ export default function MovieDetailsModal({
         )}
 
         {detailsStatus === "succeeded" && movieDetails && (
-          <div className="flex flex-col md:flex-row gap-8 p-6">
-            {/* Poster */}
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+            {/* Poster - full width on small screens */}
             <div className="flex-shrink-0 w-full md:w-[300px] relative aspect-[2/3] rounded-lg overflow-hidden">
               <Image
                 src={posterUrl!}
+                unoptimized
                 alt={`Poster for ${movieDetails.Title}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 90vw, 300px"
+                sizes="(max-width: 768px) 95vw, 300px"
               />
             </div>
 
-            {/* Details */}
-            <div className="flex-1 space-y-4">
+            {/* Details - below image on small, beside on desktop */}
+            <div className="flex-1 flex flex-col space-y-4">
               <DialogHeader>
-                <DialogTitle className="text-3xl font-bold text-accent">
+                <DialogTitle className="text-2xl sm:text-3xl font-bold text-accent">
                   {movieDetails.Title}
                 </DialogTitle>
-                <DialogDescription className="text-base text-muted-foreground">
+                <DialogDescription className="text-sm sm:text-base text-muted-foreground">
                   {movieDetails.Year} · {movieDetails.Rated} ·{" "}
                   {movieDetails.Runtime}
                 </DialogDescription>
@@ -104,11 +109,11 @@ export default function MovieDetailsModal({
                 ))}
               </div>
 
-              <p className="text-lg">{movieDetails.Plot}</p>
+              <p className="text-sm sm:text-lg">{movieDetails.Plot}</p>
 
               <Separator />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                 <div>
                   <strong>Actors:</strong>{" "}
                   <span className="text-muted-foreground">
@@ -137,7 +142,7 @@ export default function MovieDetailsModal({
 
               <Separator />
 
-              <div className="flex flex-wrap gap-6 items-center">
+              <div className="flex flex-wrap gap-4 sm:gap-6 items-center">
                 {/* IMDB Rating */}
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-400" />
@@ -162,7 +167,7 @@ export default function MovieDetailsModal({
                   </div>
                 </div>
 
-                {/* Released Date */}
+                {/* Released */}
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-blue-400" />
                   <div>
