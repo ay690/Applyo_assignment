@@ -15,7 +15,11 @@ import { MovieDetailsSkeleton } from "./skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Star, Clapperboard, Calendar, AlertCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import { fetchMovieDetails, selectMoviesState, clearMovieDetails } from "@/lib/store/moviesSlice";
+import {
+  fetchMovieDetails,
+  selectMoviesState,
+  clearMovieDetails,
+} from "@/lib/store/moviesSlice";
 
 interface MovieDetailsModalProps {
   imdbID: string | null;
@@ -36,7 +40,6 @@ export default function MovieDetailsModal({
     if (isOpen && imdbID) {
       dispatch(fetchMovieDetails(imdbID));
     }
-
     return () => {
       if (isOpen) {
         dispatch(clearMovieDetails());
@@ -51,14 +54,13 @@ export default function MovieDetailsModal({
   };
 
   const posterUrl =
-    movieDetails?.Poster !== "N/A"
-      ? movieDetails?.Poster
-      : "https://placehold.co/400x600";
+    movieDetails?.Poster !== "N/A" ? movieDetails?.Poster : "https://placehold.co/400x600";
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl w-full sm:w-[90%] max-h-[90vh] overflow-y-auto p-4">
         {detailsStatus === "loading" && <MovieDetailsSkeleton />}
+
         {detailsStatus === "failed" && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -68,9 +70,11 @@ export default function MovieDetailsModal({
             </AlertDescription>
           </Alert>
         )}
+
         {detailsStatus === "succeeded" && movieDetails && (
-          <div className="grid md:grid-cols-[300px_1fr] gap-8 items-start p-2">
-            <div className="relative aspect-[2/3] w-full rounded-lg overflow-hidden">
+          <div className="flex flex-col md:flex-row gap-8 p-6">
+            {/* Poster */}
+            <div className="flex-shrink-0 w-full md:w-[300px] relative aspect-[2/3] rounded-lg overflow-hidden">
               <Image
                 src={posterUrl!}
                 alt={`Poster for ${movieDetails.Title}`}
@@ -80,7 +84,8 @@ export default function MovieDetailsModal({
               />
             </div>
 
-            <div className="space-y-4">
+            {/* Details */}
+            <div className="flex-1 space-y-4">
               <DialogHeader>
                 <DialogTitle className="text-3xl font-bold text-accent">
                   {movieDetails.Title}
@@ -133,6 +138,7 @@ export default function MovieDetailsModal({
               <Separator />
 
               <div className="flex flex-wrap gap-6 items-center">
+                {/* IMDB Rating */}
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-400" />
                   <div>
@@ -144,6 +150,8 @@ export default function MovieDetailsModal({
                     </div>
                   </div>
                 </div>
+
+                {/* Metascore */}
                 <div className="flex items-center gap-2">
                   <Clapperboard className="w-5 h-5 text-green-400" />
                   <div>
@@ -153,6 +161,8 @@ export default function MovieDetailsModal({
                     </div>
                   </div>
                 </div>
+
+                {/* Released Date */}
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-blue-400" />
                   <div>

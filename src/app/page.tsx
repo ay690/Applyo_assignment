@@ -1,10 +1,11 @@
 "use client";
 
+import { Film } from "lucide-react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import { fetchMovies, selectMoviesState } from "@/lib/store/moviesSlice";
 import MovieSearchForm from "@/components/movie-search-form";
-import { Film } from "lucide-react";
+import MovieGrid from "@/components/movie-grid";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -29,6 +30,7 @@ export default function Home() {
       </header>
       <main className="space-y-8">
         <MovieSearchForm />
+        <MovieGrid />
       </main>
     </div>
   );

@@ -15,7 +15,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
 
   return (
     <Card
-      className="overflow-hidden cursor-pointer group transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20 border-2 border-transparent hover:border-accent"
+      className="overflow-hidden cursor-pointer group transform transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 border-transparent hover:border-accent"
       onClick={onClick}
     >
       <CardHeader className="p-0">
