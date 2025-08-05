@@ -59,26 +59,27 @@ export default function MovieSearchForm() {
       query: values.query || "avengers",
       type: values.type === "all" ? "" : values.type || "",
       year: values.year || "",
-      page: 1, // Reset to first page on new search
+      page: 1,
     };
     dispatch(setSearchParams(newParams));
     dispatch(fetchMovies(newParams));
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="p-6 bg-card rounded-lg shadow-lg"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-          <div className="md:col-span-6">
+    <div className="flex justify-center mt-8">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="p-5 bg-card rounded-lg shadow-lg w-full max-w-2xl"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+            {/* Movie Title */}
             <FormField
               control={form.control}
               name="query"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Movie Title</FormLabel>
+                  <FormLabel>Title</FormLabel>
                   <FormControl>
                     <Input placeholder="The Avengers..." {...field} />
                   </FormControl>
@@ -86,18 +87,15 @@ export default function MovieSearchForm() {
                 </FormItem>
               )}
             />
-          </div>
-          <div className="md:col-span-2">
+
+            {/* Type */}
             <FormField
               control={form.control}
               name="type"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Type</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="All" />
@@ -113,8 +111,8 @@ export default function MovieSearchForm() {
                 </FormItem>
               )}
             />
-          </div>
-          <div className="md:col-span-2">
+
+            {/* Year */}
             <FormField
               control={form.control}
               name="year"
@@ -128,19 +126,19 @@ export default function MovieSearchForm() {
                 </FormItem>
               )}
             />
-          </div>
-          <div className="md:col-span-2">
+
+            {/* Search Button */}
             <Button
               type="submit"
-              className="w-full"
+              className="w-full cursor-pointer"
               disabled={status === "loading"}
             >
               <Search className="mr-2 h-4 w-4" />
               {status === "loading" ? "Searching..." : "Search"}
             </Button>
           </div>
-        </div>
-      </form>
-    </Form>
+        </form>
+      </Form>
+    </div>
   );
 }
