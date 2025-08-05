@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CineScope
+
+CineScope is a modern, responsive web application for searching and browsing movies and TV series. It's built with Next.js and utilizes the OMDb API to fetch movie data.
+
+![CineScope Screenshot](https://placehold.co/800x600.png)
+
+## Features
+
+- **Movie & Series Search**: Quickly search for any movie or series by title.
+- **Advanced Filtering**: Narrow down your search by type (movie or series) and year of release.
+- **Detailed Information**: Click on any movie card to view detailed information, including the plot, actors, director, ratings, and more in a clean modal view.
+- **Pagination**: Easily navigate through search results with a simple pagination control.
+- **Responsive Design**: A beautiful and functional interface that works seamlessly on desktops, tablets, and mobile devices.
+
+## Tech Stack
+
+This project is built with a modern tech stack, including:
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [ShadCN UI](https://ui.shadcn.com/)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Data Fetching**: [OMDb API](https://www.omdbapi.com/)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a local copy of the project up and running.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (v18 or newer recommended)
+- `npm` or `yarn`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation & Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/ay690/Applyo_assignment.git
+    cd Applyo_assignment
+    ```
 
-## Learn More
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Set up environment variables:**
+    You'll need an API key from the [OMDb API](https://www.omdbapi.com/apikey.aspx).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Create a file named `.env.local` in the root of your project and add your API key to it:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```
+    NEXT_PUBLIC_OMDB_API_KEY=your_api_key_here
+    ```
 
-## Deploy on Vercel
+    Replace `your_api_key_here` with the key you obtained.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev`: Runs the app in development mode.
+- `npm run build`: Builds the app for production.
+- `npm run start`: Starts a Next.js production server.
+- `npm run lint`: Runs ESLint to check for code quality issues.
