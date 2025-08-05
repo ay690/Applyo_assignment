@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import { fetchMovies, selectMoviesState } from "@/lib/store/moviesSlice";
 import MovieSearchForm from "@/components/movie-search-form";
 import MovieGrid from "@/components/movie-grid";
+import PaginationControls from "@/components/pagination";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -31,6 +32,7 @@ export default function Home() {
       <main className="space-y-8">
         <MovieSearchForm />
         <MovieGrid />
+        <PaginationControls />
       </main>
     </div>
   );

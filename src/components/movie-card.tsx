@@ -31,7 +31,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         </div>
       </CardHeader>
       <CardContent className="p-4 space-y-2">
-        <CardTitle className="text-lg leading-tight truncate group-hover:text-accent transition-colors duration-300">
+        <CardTitle className="text-lg leading-tight truncate transition-colors duration-300">
           {movie.Title}
         </CardTitle>
         <div className="flex justify-between items-center text-muted-foreground">
