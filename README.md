@@ -62,3 +62,7 @@ Follow these instructions to get a local copy of the project up and running.
 - `npm run build`: Builds the app for production.
 - `npm run start`: Starts a Next.js production server.
 - `npm run lint`: Runs ESLint to check for code quality issues.
+
+# Demo Link
+
+[Link](https://applyo-assignment.vercel.app/)
